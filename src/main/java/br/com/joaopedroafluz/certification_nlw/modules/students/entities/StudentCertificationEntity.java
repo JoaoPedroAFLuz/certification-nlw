@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "answer_certifications")
-public class AnswerCertificationEntity {
+@Entity(name = "student_certifications")
+public class StudentCertificationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -24,24 +25,20 @@ public class AnswerCertificationEntity {
 
     @ManyToOne
     @JoinColumn(name = "student_id", insertable = false, updatable = false)
-    private StudentEntity student;
+    private StudentEntity studentEntity;
 
-    @Column(name = "student_certification_id")
-    private UUID studentCertificationId;
+    @Column(length = 100)
+    private String technology;
 
-    @ManyToOne
-    @JoinColumn(name = "student_certification_id", insertable = false, updatable = false)
-    private StudentCertificationEntity studentCertification;
+    @Column(length = 10)
+    private int grade;
 
-    @Column(name = "question_id")
-    private UUID questionId;
-
-    @Column(name = "answer_id")
-    private UUID answerID;
-
-    private boolean isCorrect;
+    @OneToMany
+    @JoinColumn(name = "answer_certification_id")
+    private List<AnswerCertificationEntity> answerCertificationEntities;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
 }
+
