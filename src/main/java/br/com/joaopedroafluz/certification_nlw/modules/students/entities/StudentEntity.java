@@ -1,5 +1,6 @@
 package br.com.joaopedroafluz.certification_nlw.modules.students.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,12 +21,11 @@ public class StudentEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String name;
-
     @Column(unique = true, nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "studentEntity")
+    @JsonBackReference
     private List<StudentCertificationEntity> studentCertifications;
 
 }

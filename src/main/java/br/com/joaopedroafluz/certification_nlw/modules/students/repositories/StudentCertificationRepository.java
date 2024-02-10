@@ -17,4 +17,6 @@ public interface StudentCertificationRepository extends JpaRepository<StudentCer
     List<StudentCertificationEntity> findByEmailAndTechnology(@Param("email") String email,
                                                               @Param("technology") String technology);
 
+    List<StudentCertificationEntity> findTop10ByTechnologyOrderByGradeDesc(String technology);
+
 }

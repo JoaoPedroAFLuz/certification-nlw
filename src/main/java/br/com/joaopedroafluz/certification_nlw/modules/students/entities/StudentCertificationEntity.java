@@ -28,6 +28,7 @@ public class StudentCertificationEntity {
 
     @ManyToOne
     @JoinColumn(name = "student_id", insertable = false, updatable = false)
+    @JsonManagedReference
     private StudentEntity studentEntity;
 
     @Column(length = 100)
